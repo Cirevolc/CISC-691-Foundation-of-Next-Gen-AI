@@ -30,7 +30,8 @@ class AuthorshipIdentifier:
         return len([word for word in set(words) if words.count(word) == 1]) / len(words)
 
     def make_signature(self, text):
-        return (self.average_word_length(text), self.different_to_total(text), self.exactly_once_to_total(text))
+        words = self.get_word_list(text)
+        return (self.average_word_length(words), self.different_to_total(words), self.exactly_once_to_total(words))
 
     def get_all_signatures(self):
         return [self.make_signature(text) for text in self.texts]
