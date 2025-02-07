@@ -15,7 +15,7 @@ class AuthorshipIdentifier:
         self.stopwords = {
             "a", "an", "the", "is", "in", "on", "at", "of", "for", "to", "with", 
             "and", "but", "or", "so", "if", "then", "that", "this", "these", "those",
-            "he", "she", "it", "we", "they", "you", "I", "me", "him", "her", "us", "them"
+            "he", "she", "it", "we", "they", "you", "i", "me", "him", "her", "us", "them"
             }
         self.authors = [Author(name, signature) for name, signature in zip(known_authors, self.get_all_signatures())]
 
