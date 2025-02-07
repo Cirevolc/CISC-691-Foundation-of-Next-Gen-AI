@@ -1,103 +1,75 @@
-import os
-import re
 import string
-from collections import Counter
-
-class Author:
-    def __init__(self, name, signature):
-        self.name = name
-        self.signature = signature
+import os
 
 class AuthorshipIdentifier:
-    def __init__(self, known_authors, known_texts):
-        self.texts = known_texts
-        #list of common stopwords (customize as needed)
-        self.stopwords = {
-            "a", "an", "the", "is", "in", "on", "at", "of", "for", "to", "with", 
-            "and", "but", "or", "so", "if", "then", "that", "this", "these", "those",
-            "he", "she", "it", "we", "they", "you", "i", "me", "him", "her", "us", "them"
-            }
-        self.authors = [Author(name, signature) for name, signature in zip(known_authors, self.get_all_signatures())]
-
-    def remove_stopwords(self, text):
-        words = text.split()  # Split text into words
-        filtered_words = [word for word in words if word.lower() not in self.stopwords]
-        return " ".join(filtered_words)
+    def __init__(self, texts):
+        self.authors = [author for author, _ in texts]
+        self.texts = [text for _, text in texts]
+        self.signatures = self.get_all_signatures()
 
     def clean_word(self, word):
         return word.strip(string.punctuation).lower()
 
     def split_text(self, text):
         return [self.clean_word(word) for word in text.split()]
-    
-    def get_word_list(self, text):
-        return [self.clean_word(word) for word in self.split_text(text)]
 
-    def average_word_length(self, words):
+    def average_word_length(self, text):
+        words = self.split_text(text)
+        words = [self.clean_word(word) for word in words]
         return sum(len(word) for word in words) / len(words)
 
-    def different_to_total(self, words):
+    def different_to_total(self, text):
+        words = self.split_text(text)
+        words = [self.clean_word(word) for word in words]
         return len(set(words)) / len(words)
 
-    def exactly_once_to_total(self, words):
+    def exactly_once_to_total(self, text):
+        words = self.split_text(text)
+        words = [self.clean_word(word) for word in words]
         return len([word for word in set(words) if words.count(word) == 1]) / len(words)
-    
-    def average_words_per_chapter(self, text):
-        # Use regex to find all chapter sections, ignoring the chapter index
-        chapters = re.split(r'\bChapter\s+\d+\b', text, flags=re.IGNORECASE)[1:]  # Skip the first empty split before "Chapter"
 
-        if not chapters:
-            return 0  # Return 0 if no chapters are found
+    def average_sentence_length(self, text):
+        sentences = text.split('.')
+        sentences = [sentence.strip() for sentence in sentences if sentence.strip()]
+        total_words = sum(len(sentence.split()) for sentence in sentences)
+        return total_words / len(sentences) if sentences else 0
 
-        # Count words in each chapter (ignoring the chapter title)
-        word_counts = [len(chapter.split()) for chapter in chapters]
-
-        # Remove index chapters with less than 10 words
-        word_counts = [count for count in word_counts if count>=10]
-        
-        # Calculate average word count per chapter
-        avg_word_count = sum(word_counts) / len(word_counts)
-        
-        return avg_word_count
-    
-    def get_hapax_legomena_ratio(self, words):
-        """
-        Calculate the hapax legomena ratio, which is the ratio of words which occur only once in the text.
-        
-        :param words: list of words
-        :return: hapax legomena ratio
-        """
-        return sum(1 for word, count in Counter(words).items() if count == 1) / len(words)
+    def average_paragraph_length(self, text):
+        paragraphs = text.split('\n\n')  # Assuming paragraphs are separated by double newlines
+        paragraphs = [paragraph.strip() for paragraph in paragraphs if paragraph.strip()]
+        total_sentences = sum(len(paragraph.split('.')) for paragraph in paragraphs)
+        return total_sentences / len(paragraphs) if paragraphs else 0
 
     def make_signature(self, text):
-        # removing stopwords from text
-        text = self.remove_stopwords(text)
-        words = self.get_word_list(text)
-        return (self.average_word_length(words), self.different_to_total(words), self.exactly_once_to_total(words), 
-                self.get_hapax_legomena_ratio(words), self.average_words_per_chapter(text))
+        return (
+            self.average_word_length(text),
+            self.different_to_total(text),
+            self.exactly_once_to_total(text),
+            self.average_sentence_length(text),
+            self.average_paragraph_length(text)  # Adding the new feature
+        )
 
     def get_all_signatures(self):
-        return [self.make_signature(text) for text in self.texts]
+        return [(author, self.make_signature(text)) for (author, text) in zip(self.authors, self.texts)]
 
     def make_guess(self, text):
         signature = self.make_signature(text)
-        return min(self.authors, key=lambda author: sum((a - b) ** 2 for a, b in zip(signature, author.signature)))
+        return min(self.signatures, key=lambda x: sum((a - b) ** 2 for a, b in zip(signature, x[1])))
 
 def read_texts_from_folder(folder_path):
-    authors, texts = [], []
+    texts = []
     for filename in os.listdir(folder_path):
         if filename.endswith('.txt'):
             with open(os.path.join(folder_path, filename), 'r') as file:
-                authors.append(' '.join(filename.split('.')[0].split('_')))
-                texts.append(file.read())
-    return authors, texts
+                texts.append((filename.split('.')[0], file.read()))
+    return texts
 
-known_authors, known_texts = read_texts_from_folder('./ch7/known_authors')
+known_texts = read_texts_from_folder('./ch7/known_authors')
 
-identifier = AuthorshipIdentifier(known_authors, known_texts)
+identifier = AuthorshipIdentifier(known_texts)
 
-unkown_authors, unknown_texts = read_texts_from_folder('./ch7')
+unknown_texts = read_texts_from_folder('./ch7')
 
 for i, text in enumerate(unknown_texts):
     guess = identifier.make_guess(text)
-    print(f'Unknown author {unkown_authors[i]} is most likely written by the author: {guess.name}')
+    print(f'Unknown text {i+1} is most likely written by the author with signature: {guess}')
