@@ -1,6 +1,8 @@
 import os
 import re
 import string
+import spacy
+from nltk.util import ngrams
 from collections import Counter
 
 class Author:
@@ -9,8 +11,10 @@ class Author:
         self.signature = signature
 
 class AuthorshipIdentifier:
-    def __init__(self, known_authors, known_texts):
+    def __init__(self, known_authors, known_texts, n=3):
         self.texts = known_texts
+        self.nlp = spacy.load("en_core_web_sm")
+        self.n = n # define n for n-grams
         #list of common stopwords (customize as needed)
         self.stopwords = {
             "a", "an", "the", "is", "in", "on", "at", "of", "for", "to", "with", 
@@ -81,14 +85,27 @@ class AuthorshipIdentifier:
         word_counts = [len(para.strip().split()) for para in valid_paragraphs]
         return sum(word_counts) / len(word_counts) if word_counts else 0
 
+    def average_paragraphs_per_chapter(self, text):
+        # Use regex to find all chapter sections, ignoring the chapter index
+        chapters = re.split(r'\bCHAPTER\s+\w+', text, flags=re.IGNORECASE)[1:]
+        paragraph_counts = [len(chapter.split('\n\n')) for chapter in chapters if len(chapter.split('\n\n')) >= 1]
+        return sum(paragraph_counts) / len(paragraph_counts) if paragraph_counts else 0
+
+    def extract_ngrams(self, text, n):
+        doc = self.nlp(text.lower())
+        words = [token.text for token in doc if token.is_alpha]
+        return list(ngrams(words, n))
+
     def make_signature(self, text):
         # removing stopwords from text
         text = self.remove_stopwords(text)
         words = self.get_word_list(text)
+        ngram_freq = Counter(self.extract_ngrams(text, self.n))
+        top_ngram_score = sum(ngram_freq.values()) / len(ngram_freq) if ngram_freq else 0
         
         return (self.average_word_length(words), self.different_to_total(words), self.exactly_once_to_total(words), 
                 self.get_hapax_legomena_ratio(words), self.average_words_per_chapter(text),  self.average_sentence_length(text),
-            self.average_paragraph_length(text))
+            self.average_paragraph_length(text), self.average_paragraphs_per_chapter(text), top_ngram_score)
 
     def get_all_signatures(self):
         return [self.make_signature(text) for text in self.texts]
@@ -106,11 +123,11 @@ def read_texts_from_folder(folder_path):
                 texts.append(file.read())
     return authors, texts
 
-known_authors, known_texts = read_texts_from_folder('./ch7/known_authors')
-identifier = AuthorshipIdentifier(known_authors, known_texts)
+known_authors_, known_texts_ = read_texts_from_folder('./ch7/known_authors')
+identifier = AuthorshipIdentifier(known_authors_, known_texts_)
 
 unkown_authors, unknown_texts = read_texts_from_folder('./ch7')
 
-for i, text in enumerate(unknown_texts):
-    guess = identifier.make_guess(text)
+for i, text_ in enumerate(unknown_texts):
+    guess = identifier.make_guess(text_)
     print(f'Unknown author {unkown_authors[i]} is most likely written by the author: {guess.name}')
