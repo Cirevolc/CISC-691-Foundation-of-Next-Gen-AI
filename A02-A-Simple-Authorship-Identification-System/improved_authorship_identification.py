@@ -68,13 +68,27 @@ class AuthorshipIdentifier:
         :return: hapax legomena ratio
         """
         return sum(1 for word, count in Counter(words).items() if count == 1) / len(words)
+    
+    def average_sentence_length(self, text):
+        sentences = re.split(r'[.!?]', text)
+        valid_sentences = [sentence for sentence in sentences if len(sentence.strip().split()) > 0]
+        word_counts = [len(sentence.strip().split()) for sentence in valid_sentences]
+        return sum(word_counts) / len(word_counts) if word_counts else 0
+
+    def average_paragraph_length(self, text):
+        paragraphs = text.split('\n\n')
+        valid_paragraphs = [para for para in paragraphs if len(para.strip().split()) > 0]
+        word_counts = [len(para.strip().split()) for para in valid_paragraphs]
+        return sum(word_counts) / len(word_counts) if word_counts else 0
 
     def make_signature(self, text):
         # removing stopwords from text
         text = self.remove_stopwords(text)
         words = self.get_word_list(text)
+        
         return (self.average_word_length(words), self.different_to_total(words), self.exactly_once_to_total(words), 
-                self.get_hapax_legomena_ratio(words), self.average_words_per_chapter(text))
+                self.get_hapax_legomena_ratio(words), self.average_words_per_chapter(text),  self.average_sentence_length(text),
+            self.average_paragraph_length(text))
 
     def get_all_signatures(self):
         return [self.make_signature(text) for text in self.texts]
@@ -87,16 +101,16 @@ def read_texts_from_folder(folder_path):
     authors, texts = [], []
     for filename in os.listdir(folder_path):
         if filename.endswith('.txt'):
-            with open(os.path.join(folder_path, filename), 'r') as file:
+            with open(os.path.join(folder_path, filename), 'r', encoding='utf-8') as file:
                 authors.append(' '.join(filename.split('.')[0].split('_')))
                 texts.append(file.read())
     return authors, texts
 
-known_authors, known_texts = read_texts_from_folder('./ch7/known_authors')
+known_authors, known_texts = read_texts_from_folder(r'C:\Users\vikramp\OneDrive - School Health Corporation\Desktop\ch7\known_authors')
 
 identifier = AuthorshipIdentifier(known_authors, known_texts)
 
-unkown_authors, unknown_texts = read_texts_from_folder('./ch7')
+unkown_authors, unknown_texts = read_texts_from_folder(r'C:\Users\vikramp\OneDrive - School Health Corporation\Desktop\ch7\unknown_authors')
 
 for i, text in enumerate(unknown_texts):
     guess = identifier.make_guess(text)
