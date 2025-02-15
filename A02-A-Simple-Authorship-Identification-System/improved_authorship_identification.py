@@ -106,11 +106,10 @@ def read_texts_from_folder(folder_path):
                 texts.append(file.read())
     return authors, texts
 
-known_authors, known_texts = read_texts_from_folder(r'C:\Users\vikramp\OneDrive - School Health Corporation\Desktop\ch7\known_authors')
-
+known_authors, known_texts = read_texts_from_folder('./ch7/known_authors')
 identifier = AuthorshipIdentifier(known_authors, known_texts)
 
-unkown_authors, unknown_texts = read_texts_from_folder(r'C:\Users\vikramp\OneDrive - School Health Corporation\Desktop\ch7\unknown_authors')
+unkown_authors, unknown_texts = read_texts_from_folder('./ch7')
 
 for i, text in enumerate(unknown_texts):
     guess = identifier.make_guess(text)
