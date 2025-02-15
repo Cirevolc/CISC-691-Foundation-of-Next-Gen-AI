@@ -103,22 +103,27 @@ unknown_authors, unknown_texts = read_texts_from_folder(r'C:\Users\vikramp\OneDr
 
 # Output for unknown authors
 for i, text in enumerate(unknown_texts):
-    avg_sentence_length = identifier.average_sentence_length(text)
-    avg_paragraph_length = identifier.average_paragraph_length(text)
-    
+    words = identifier.get_word_list(text)
     print(f'Unknown author {unknown_authors[i]}:')
-    print(f'  Average sentence length: {avg_sentence_length}')
-    print(f'  Average paragraph length: {avg_paragraph_length}')
+    print(f'  Average word length: {identifier.average_word_length(words)}')
+    print(f'  Different words to total words ratio: {identifier.different_to_total(words)}')
+    print(f'  Words occurring exactly once to total words ratio: {identifier.exactly_once_to_total(words)}')
+    print(f'  Hapax legomena ratio: {identifier.get_hapax_legomena_ratio(words)}')
+    print(f'  Average words per chapter: {identifier.average_words_per_chapter(text)}')
+    print(f'  Average sentence length: {identifier.average_sentence_length(text)}')
+    print(f'  Average paragraph length: {identifier.average_paragraph_length(text)}')
     print('---')
 
 # Output for known authors
 for i, text in enumerate(known_texts):
-    avg_sentence_length = identifier.average_sentence_length(text)
-    avg_paragraph_length = identifier.average_paragraph_length(text)
-    
+    words = identifier.get_word_list(text)
     print(f'Known author {known_authors[i]}:')
-    print(f'  Average sentence length: {avg_sentence_length}')
-    print(f'  Average paragraph length: {avg_paragraph_length}')
+    print(f'  Average word length: {identifier.average_word_length(words)}')
+    print(f'  Different words to total words ratio: {identifier.different_to_total(words)}')
+    print(f'  Words occurring exactly once to total words ratio: {identifier.exactly_once_to_total(words)}')
+    print(f'  Hapax legomena ratio: {identifier.get_hapax_legomena_ratio(words)}')
+    print(f'  Average words per chapter: {identifier.average_words_per_chapter(text)}')
+    print(f'  Average sentence length: {identifier.average_sentence_length(text)}')
+    print(f'  Average paragraph length: {identifier.average_paragraph_length(text)}')
     print('---')
-
 #Note this code has all functions for other functions you guys have to add your syntax it should work
