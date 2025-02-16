@@ -88,7 +88,11 @@ class AuthorshipIdentifier:
     def average_paragraphs_per_chapter(self, text):
         # Use regex to find all chapter sections, ignoring the chapter index
         chapters = re.split(r'\bCHAPTER\s+\w+', text, flags=re.IGNORECASE)[1:]
-        paragraph_counts = [len(chapter.split('\n\n')) for chapter in chapters if len(chapter.split('\n\n')) > 10]
+        def count_valid_paragraphs(chapter):
+            paragraphs = chapter.split('\n\n')
+            return sum(1 for p in paragraphs if len(p.split()) > 10)  # Count only paragraphs with more than 10 words
+        paragraph_counts = [count_valid_paragraphs(chapter) for chapter in chapters if
+                            count_valid_paragraphs(chapter) > 10]
         return sum(paragraph_counts) / len(paragraph_counts) if paragraph_counts else 0
 
     def extract_ngrams(self, text, n):
