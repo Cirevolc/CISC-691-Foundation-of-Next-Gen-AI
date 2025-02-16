@@ -88,7 +88,7 @@ class AuthorshipIdentifier:
     def average_paragraphs_per_chapter(self, text):
         # Use regex to find all chapter sections, ignoring the chapter index
         chapters = re.split(r'\bCHAPTER\s+\w+', text, flags=re.IGNORECASE)[1:]
-        paragraph_counts = [len(chapter.split('\n\n')) for chapter in chapters if len(chapter.split('\n\n')) >= 1]
+        paragraph_counts = [len(chapter.split('\n\n')) for chapter in chapters if len(chapter.split('\n\n')) > 10]
         return sum(paragraph_counts) / len(paragraph_counts) if paragraph_counts else 0
 
     def extract_ngrams(self, text, n):
@@ -101,7 +101,7 @@ class AuthorshipIdentifier:
         text = self.remove_stopwords(text)
         words = self.get_word_list(text)
         ngram_freq = Counter(self.extract_ngrams(text, self.n))
-        top_ngram_score = sum(ngram_freq.values()) / len(ngram_freq) if ngram_freq else 0
+        top_ngram_score = sum(ngram_freq.values()) / len(ngram_freq) if ngram_freq else 1
         
         return (self.average_word_length(words), self.different_to_total(words), self.exactly_once_to_total(words), 
                 self.get_hapax_legomena_ratio(words), self.average_words_per_chapter(text),  self.average_sentence_length(text),
