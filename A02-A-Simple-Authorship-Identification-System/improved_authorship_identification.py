@@ -81,7 +81,7 @@ class AuthorshipIdentifier:
 
     def average_paragraph_length(self, text):
         paragraphs = text.split('\n\n')
-        valid_paragraphs = [para for para in paragraphs if len(para.strip().split()) > 0]
+        valid_paragraphs = [para for para in paragraphs if len(para.strip().split()) > 10]
         word_counts = [len(para.strip().split()) for para in valid_paragraphs]
         return sum(word_counts) / len(word_counts) if word_counts else 0
 
