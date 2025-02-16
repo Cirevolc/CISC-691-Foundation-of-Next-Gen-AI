@@ -105,3 +105,4 @@ unkown_authors, unknown_texts = read_texts_from_folder('./ch7')
 for i, text in enumerate(unknown_texts):
     guess = identifier.make_guess(text)
     print(f'Unknown author {unkown_authors[i]} is most likely written by the author: {guess.name}')
+    
