@@ -1,5 +1,6 @@
 import os
 import re
+import math
 import string
 import spacy
 from nltk.util import ngrams
@@ -64,15 +65,19 @@ class AuthorshipIdentifier:
         
         return avg_word_count
     
-    def get_hapax_legomena_ratio(self, words):
+    def get_shannon_entropy(self, words):
         """
-        Calculate the hapax legomena ratio, which is the ratio of words which occur only once in the text.
-        
+        Calculate the Shannon entropy of a text, representing its lexical diversity.
+
         :param words: list of words
-        :return: hapax legomena ratio
+        :return: Shannon entropy value
         """
-        return sum(1 for word, count in Counter(words).items() if count == 1) / len(words)
-    
+        word_counts = Counter(words)
+        total_words = len(words)
+        
+        entropy = -sum((count / total_words) * math.log2(count / total_words) for count in word_counts.values())
+        return entropy
+        
     def average_sentence_length(self, text):
         sentences = re.split(r'[.!?]', text)
         valid_sentences = [sentence for sentence in sentences if len(sentence.strip().split()) > 0]
@@ -108,7 +113,7 @@ class AuthorshipIdentifier:
         top_ngram_score = sum(ngram_freq.values()) / len(ngram_freq) if ngram_freq else 1
         
         return (self.average_word_length(words), self.different_to_total(words), self.exactly_once_to_total(words), 
-                self.get_hapax_legomena_ratio(words), self.average_words_per_chapter(text),  self.average_sentence_length(text),
+                self.get_shannon_entropy(words), self.average_words_per_chapter(text),  self.average_sentence_length(text),
             self.average_paragraph_length(text), self.average_paragraphs_per_chapter(text), top_ngram_score)
 
     def get_all_signatures(self):
