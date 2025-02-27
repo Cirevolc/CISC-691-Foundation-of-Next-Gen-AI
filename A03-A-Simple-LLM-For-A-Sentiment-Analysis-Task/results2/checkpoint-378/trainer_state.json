@@ -1,0 +1,114 @@
+{
+  "best_metric": 0.49575379490852356,
+  "best_model_checkpoint": "/Users/ericliang/git/genai/A03-A-Simple-LLM-For-A-Sentiment-Analysis-Task/results2/checkpoint-315",
+  "epoch": 6.0,
+  "eval_steps": 500,
+  "global_step": 378,
+  "is_hyper_param_search": false,
+  "is_local_process_zero": true,
+  "is_world_process_zero": true,
+  "log_history": [
+    {
+      "epoch": 1.0,
+      "eval_accuracy": 0.5,
+      "eval_f1": 0.3333333333333333,
+      "eval_loss": 0.6925157308578491,
+      "eval_runtime": 3.248,
+      "eval_samples_per_second": 153.939,
+      "eval_steps_per_second": 4.926,
+      "step": 63
+    },
+    {
+      "epoch": 1.5873015873015874,
+      "grad_norm": 0.8653290867805481,
+      "learning_rate": 3.677248677248677e-05,
+      "loss": 0.6967,
+      "step": 100
+    },
+    {
+      "epoch": 2.0,
+      "eval_accuracy": 0.584,
+      "eval_f1": 0.5310583651973162,
+      "eval_loss": 0.6681390404701233,
+      "eval_runtime": 3.3117,
+      "eval_samples_per_second": 150.981,
+      "eval_steps_per_second": 4.831,
+      "step": 126
+    },
+    {
+      "epoch": 3.0,
+      "eval_accuracy": 0.738,
+      "eval_f1": 0.7378227681912972,
+      "eval_loss": 0.5258280038833618,
+      "eval_runtime": 3.3306,
+      "eval_samples_per_second": 150.121,
+      "eval_steps_per_second": 4.804,
+      "step": 189
+    },
+    {
+      "epoch": 3.1746031746031744,
+      "grad_norm": 2.6997344493865967,
+      "learning_rate": 2.3544973544973546e-05,
+      "loss": 0.5755,
+      "step": 200
+    },
+    {
+      "epoch": 4.0,
+      "eval_accuracy": 0.78,
+      "eval_f1": 0.779827384669581,
+      "eval_loss": 0.4993458390235901,
+      "eval_runtime": 3.1186,
+      "eval_samples_per_second": 160.329,
+      "eval_steps_per_second": 5.131,
+      "step": 252
+    },
+    {
+      "epoch": 4.761904761904762,
+      "grad_norm": 3.356755256652832,
+      "learning_rate": 1.0317460317460318e-05,
+      "loss": 0.3055,
+      "step": 300
+    },
+    {
+      "epoch": 5.0,
+      "eval_accuracy": 0.79,
+      "eval_f1": 0.789810829746772,
+      "eval_loss": 0.49575379490852356,
+      "eval_runtime": 3.2509,
+      "eval_samples_per_second": 153.803,
+      "eval_steps_per_second": 4.922,
+      "step": 315
+    },
+    {
+      "epoch": 6.0,
+      "eval_accuracy": 0.802,
+      "eval_f1": 0.8019801980198019,
+      "eval_loss": 0.5105077624320984,
+      "eval_runtime": 3.0591,
+      "eval_samples_per_second": 163.448,
+      "eval_steps_per_second": 5.23,
+      "step": 378
+    }
+  ],
+  "logging_steps": 100,
+  "max_steps": 378,
+  "num_input_tokens_seen": 0,
+  "num_train_epochs": 6,
+  "save_steps": 500,
+  "stateful_callbacks": {
+    "TrainerControl": {
+      "args": {
+        "should_epoch_stop": false,
+        "should_evaluate": false,
+        "should_log": false,
+        "should_save": true,
+        "should_training_stop": true
+      },
+      "attributes": {}
+    }
+  },
+  "total_flos": 332377694208000.0,
+  "train_batch_size": 32,
+  "trial_name": null,
+  "trial_params": null
+}
