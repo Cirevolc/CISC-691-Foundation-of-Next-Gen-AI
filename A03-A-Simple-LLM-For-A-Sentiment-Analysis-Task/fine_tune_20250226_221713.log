@@ -1,0 +1,60 @@
+[2025-02-26 22:17:13,805] INFO __main__:<module>:290 - Starting...
+[2025-02-26 22:17:13,805] INFO __main__:step_04_predict_sentiment:264 - Using model: base...
+[2025-02-26 22:17:14,236] INFO __main__:predict_sentiment:241 - Predict: [I loved this movie!                                                                                 ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,263] INFO __main__:predict_sentiment:241 - Predict: [This was the worst experience ever.                                                                 ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,291] INFO __main__:predict_sentiment:241 - Predict: [It was okay, but not great.                                                                         ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,317] INFO __main__:predict_sentiment:241 - Predict: [This was the worst movie I've ever seen. A complete waste of time.                                  ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,343] INFO __main__:predict_sentiment:241 - Predict: [Absolutely awful! I regret watching this movie.                                                     ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,370] INFO __main__:predict_sentiment:241 - Predict: [The plot was weak, and the acting was even worse.                                                   ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,396] INFO __main__:predict_sentiment:241 - Predict: [It had a few good moments, but overall, it was disappointing.                                       ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,402] INFO __main__:predict_sentiment:241 - Predict: [Not bad, but I wouldn’t watch it again.                                                             ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,424] INFO __main__:predict_sentiment:241 - Predict: [Es war der schlimmste Film, den ich je gesehen habe.                                                ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,450] INFO __main__:predict_sentiment:241 - Predict: [Der Film war eine große Enttäuschung.                                                               ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,455] INFO __main__:predict_sentiment:241 - Predict: [Ein durchschnittlicher Film mit einigen guten Momenten.                                             ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,459] INFO __main__:predict_sentiment:241 - Predict: [Der Film hatte eine interessante Handlung.                                                          ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,483] INFO __main__:predict_sentiment:241 - Predict: [Fantastischer Film! Ich habe jede Minute genossen.                                                  ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,487] INFO __main__:predict_sentiment:241 - Predict: [Questo film era terribile, non lo consiglio a nessuno.                                              ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,509] INFO __main__:predict_sentiment:241 - Predict: [Non mi è piaciuto, la trama era confusa.                                                            ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,515] INFO __main__:predict_sentiment:241 - Predict: [Un film discreto, ma niente di speciale.                                                            ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,518] INFO __main__:predict_sentiment:241 - Predict: [Molto bello, una storia ben raccontata.                                                             ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,522] INFO __main__:predict_sentiment:241 - Predict: [Capolavoro assoluto! Da vedere e rivedere.                                                          ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,525] INFO __main__:predict_sentiment:241 - Predict: [Ce film était terrible, je ne le recommande pas.                                                    ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,529] INFO __main__:predict_sentiment:241 - Predict: [Un film ennuyeux avec peu de bons moments.                                                          ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,556] INFO __main__:predict_sentiment:241 - Predict: [Un film moyen, mais agréable.                                                                       ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,559] INFO __main__:predict_sentiment:241 - Predict: [J'ai aimé l'histoire, c'était intéressant.                                                          ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,563] INFO __main__:predict_sentiment:241 - Predict: [Incroyable! Un des meilleurs films que j'ai vus.                                                    ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,566] INFO __main__:predict_sentiment:241 - Predict: [Esta película fue horrible, no la recomiendo.                                                       ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,570] INFO __main__:predict_sentiment:241 - Predict: [Un poco aburrida, pero tuvo algunos momentos buenos.                                                ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,574] INFO __main__:predict_sentiment:241 - Predict: [Fue un buen filme, pero nada espectacular.                                                          ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,577] INFO __main__:predict_sentiment:241 - Predict: [Gran película, realmente disfruté la trama.                                                         ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,581] INFO __main__:predict_sentiment:241 - Predict: [Maravilloso! Lo volvería a ver muchas veces.                                                        ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,582] INFO __main__:step_04_predict_sentiment:264 - Using model: fine_tuned...
+[2025-02-26 22:17:14,668] INFO __main__:predict_sentiment:241 - Predict: [I loved this movie!                                                                                 ] : 	 Sentiment: Positive
+[2025-02-26 22:17:14,674] INFO __main__:predict_sentiment:241 - Predict: [This was the worst experience ever.                                                                 ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,678] INFO __main__:predict_sentiment:241 - Predict: [It was okay, but not great.                                                                         ] : 	 Sentiment: Positive
+[2025-02-26 22:17:14,682] INFO __main__:predict_sentiment:241 - Predict: [This was the worst movie I've ever seen. A complete waste of time.                                  ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,687] INFO __main__:predict_sentiment:241 - Predict: [Absolutely awful! I regret watching this movie.                                                     ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,691] INFO __main__:predict_sentiment:241 - Predict: [The plot was weak, and the acting was even worse.                                                   ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,695] INFO __main__:predict_sentiment:241 - Predict: [It had a few good moments, but overall, it was disappointing.                                       ] : 	 Sentiment: Positive
+[2025-02-26 22:17:14,697] INFO __main__:predict_sentiment:241 - Predict: [Not bad, but I wouldn’t watch it again.                                                             ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,700] INFO __main__:predict_sentiment:241 - Predict: [Es war der schlimmste Film, den ich je gesehen habe.                                                ] : 	 Sentiment: Positive
+[2025-02-26 22:17:14,703] INFO __main__:predict_sentiment:241 - Predict: [Der Film war eine große Enttäuschung.                                                               ] : 	 Sentiment: Positive
+[2025-02-26 22:17:14,706] INFO __main__:predict_sentiment:241 - Predict: [Ein durchschnittlicher Film mit einigen guten Momenten.                                             ] : 	 Sentiment: Positive
+[2025-02-26 22:17:14,708] INFO __main__:predict_sentiment:241 - Predict: [Der Film hatte eine interessante Handlung.                                                          ] : 	 Sentiment: Positive
+[2025-02-26 22:17:14,711] INFO __main__:predict_sentiment:241 - Predict: [Fantastischer Film! Ich habe jede Minute genossen.                                                  ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,714] INFO __main__:predict_sentiment:241 - Predict: [Questo film era terribile, non lo consiglio a nessuno.                                              ] : 	 Sentiment: Positive
+[2025-02-26 22:17:14,717] INFO __main__:predict_sentiment:241 - Predict: [Non mi è piaciuto, la trama era confusa.                                                            ] : 	 Sentiment: Positive
+[2025-02-26 22:17:14,719] INFO __main__:predict_sentiment:241 - Predict: [Un film discreto, ma niente di speciale.                                                            ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,722] INFO __main__:predict_sentiment:241 - Predict: [Molto bello, una storia ben raccontata.                                                             ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,725] INFO __main__:predict_sentiment:241 - Predict: [Capolavoro assoluto! Da vedere e rivedere.                                                          ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,728] INFO __main__:predict_sentiment:241 - Predict: [Ce film était terrible, je ne le recommande pas.                                                    ] : 	 Sentiment: Positive
+[2025-02-26 22:17:14,731] INFO __main__:predict_sentiment:241 - Predict: [Un film ennuyeux avec peu de bons moments.                                                          ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,736] INFO __main__:predict_sentiment:241 - Predict: [Un film moyen, mais agréable.                                                                       ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,739] INFO __main__:predict_sentiment:241 - Predict: [J'ai aimé l'histoire, c'était intéressant.                                                          ] : 	 Sentiment: Positive
+[2025-02-26 22:17:14,743] INFO __main__:predict_sentiment:241 - Predict: [Incroyable! Un des meilleurs films que j'ai vus.                                                    ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,746] INFO __main__:predict_sentiment:241 - Predict: [Esta película fue horrible, no la recomiendo.                                                       ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,750] INFO __main__:predict_sentiment:241 - Predict: [Un poco aburrida, pero tuvo algunos momentos buenos.                                                ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,753] INFO __main__:predict_sentiment:241 - Predict: [Fue un buen filme, pero nada espectacular.                                                          ] : 	 Sentiment: Negative
+[2025-02-26 22:17:14,756] INFO __main__:predict_sentiment:241 - Predict: [Gran película, realmente disfruté la trama.                                                         ] : 	 Sentiment: Positive
+[2025-02-26 22:17:14,759] INFO __main__:predict_sentiment:241 - Predict: [Maravilloso! Lo volvería a ver muchas veces.                                                        ] : 	 Sentiment: Positive
+[2025-02-26 22:17:14,760] INFO __main__:<module>:302 - Done...

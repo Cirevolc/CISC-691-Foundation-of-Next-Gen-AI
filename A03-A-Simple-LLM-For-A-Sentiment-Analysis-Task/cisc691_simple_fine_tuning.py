@@ -290,11 +290,11 @@ if __name__ == "__main__":
     logger.info(f"Starting...")
 
     # uncomment as needed
-    step_01_download_base_model()
+    # step_01_download_base_model()
 
-    step_02_download_sentiment_dataset()
+    # step_02_download_sentiment_dataset()
 
-    step_03_train_model()
+    # step_03_train_model()
 
     step_04_predict_sentiment("base")
     step_04_predict_sentiment("fine_tuned")
